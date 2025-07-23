@@ -79,7 +79,7 @@ Source code, model setup, source data, and scripts to replicate the results and 
 - [NumPy], [Matplotlib], [Scipy], [pandas], [PIL], [sklearn], [seaborn]
 
 ## References
-Hu, Z. and Li, Y.P.: From Lab to Shelf: Physically Based Prediction of Wave Damping by Muddy Seafloors. (In review, 2025)
+Hu, Z., Chen W., Li, Y.P.: From Lab to Shelf: Physically Based Prediction of Wave Damping by Muddy Seafloors. (In review, 2025)
 
 Hsu, W.Y., Hwung, H.H., Hsu, T.J., Torres-Freyermuth, A., Yang, R.Y.: An experimental and numerical investigation on wave-mud interactions. Journal of Geophysical Research: Oceans 118(3), 1126–1141 (2013) https://doi.org/10.1002/jgrc.20103
 
