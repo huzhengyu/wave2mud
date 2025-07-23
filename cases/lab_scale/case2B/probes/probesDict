@@ -1,0 +1,213 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  | For copyright notice see file Copyright         |
+\*---------------------------------------------------------------------------*/
+gaugesVOF
+{
+        type    sets;
+        libs ("libsampling.so");
+        writeControl adjustableRunTime;
+        writeInterval 0.005;
+        setFormat       raw;
+        surfaceFormat   raw;
+        interpolationScheme cellPoint;
+        fields          ( alpha.water );
+        sets
+        (
+            waterWave01
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 5.42 0.05 0.2);
+                end     ( 5.42 0.05 0.3);
+            }
+            waterWave02
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 6.506   0.05 0.2);
+                end     ( 6.506   0.05 0.3);
+            }
+            waterWave03
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 7.592 0.05 0.2);
+                end     ( 7.592 0.05 0.3);
+            }
+            waterWave04
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 8.678  0.05 0.2);
+                end     ( 8.678  0.05 0.3);
+            }
+            waterWave05
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 9.764  0.05 0.2);
+                end     ( 9.764  0.05 0.3);
+            }
+            waterWave06
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 10.85  0.05 0.2);
+                end     ( 10.85  0.05 0.3);
+            }
+            waterWave07
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 11.936  0.05 0.2);
+                end     ( 11.936  0.05 0.3);
+            }
+            waterWave08
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 13.022  0.05 0.2);
+                end     ( 13.022  0.05 0.3);
+            }
+
+            mudWave01
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 5.42 0.05 -0.06);
+                end     ( 5.42 0.05  0.06);
+            }
+            mudWave02
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 6.506   0.05 -0.06);
+                end     ( 6.506   0.05 0.06);
+            }
+            mudWave03
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 7.592 0.05 -0.06);
+                end     ( 7.592 0.05 0.06);
+            }
+            mudWave04
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 8.678  0.05 -0.06);
+                end     ( 8.678  0.05 0.06);
+            }
+            mudWave05
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 9.764  0.05 -0.06);
+                end     ( 9.764  0.05 0.06);
+            }
+            mudWave06
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 10.85  0.05 -0.06);
+                end     ( 10.85  0.05 0.06);
+            }
+            mudWave07
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 11.936  0.05 -0.06);
+                end     ( 11.936  0.05 0.06);
+            }
+            mudWave08
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 13.022  0.05 -0.06);
+                end     ( 13.022  0.05 0.06);
+            }
+        );
+}
+
+
+// gaugesU
+// {
+//         type    sets;
+//         libs ("libsampling.so");
+//         writeControl adjustableRunTime;
+//         writeInterval 0.005;
+//         setFormat       raw;
+//         surfaceFormat   raw;
+//         interpolationScheme cellPointFace;
+//         fields          (U nu.mud strainRate tau);
+//         sets
+//         (
+//             gaugeP01
+//             {
+//                 type    midPointAndFace;
+//                 axis    xyz;
+//                 start   ( 9.178 0.05  -0.06);
+//                 end     ( 9.178 0.05  0.4);
+//             }
+//         );
+// }
+
+timeAveraging
+    {
+        type            fieldAverage;
+        libs            (fieldFunctionObjects);
+        enabled         true;
+        log             true;
+        timeStart       24.6;
+        timeEnd         30;
+        executeControl  timeStep;
+        executeInterval 1;
+        writeControl    runTime;
+        writeInterval   30;
+
+        fields
+        (
+            // strainRate
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+            // nu.mud
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+            // convectiveTerm
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+            // pressureTransport
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+            // viscousDiffusion
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+            // viscousDissipation
+            // {
+            //     mean        on;
+            //     prime2Mean  off;
+            //     base        time;
+            // }
+        );
+    }
+
+// ************************************************************************* //

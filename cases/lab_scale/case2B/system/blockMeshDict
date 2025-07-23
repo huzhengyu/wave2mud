@@ -1,0 +1,172 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale   1;
+
+// x
+flumeLeft    	   0;
+mudLeft            4.94;
+mudRight           13.71;
+flumeRight         18;
+// y
+flumeBack 	   0;
+flumeFront 	   1;
+//z
+mudBottom          -0.06;
+flumeBottom        0;
+flumeTop    	   0.40;
+
+vertices        
+(
+    ($flumeLeft  $flumeBack  $flumeBottom)
+    ($mudLeft    $flumeBack  $flumeBottom)
+    ($mudLeft    $flumeBack  $mudBottom)
+    ($mudRight   $flumeBack  $mudBottom)
+    ($mudRight   $flumeBack  $flumeBottom)
+    ($flumeRight $flumeBack  $flumeBottom)
+    ($flumeRight $flumeBack  $flumeTop)
+    ($mudRight   $flumeBack  $flumeTop)
+    ($mudLeft    $flumeBack  $flumeTop)
+    ($flumeLeft  $flumeBack  $flumeTop)
+
+    ($flumeLeft  $flumeFront $flumeBottom) //10
+    ($mudLeft    $flumeFront $flumeBottom)
+    ($mudLeft    $flumeFront $mudBottom)
+    ($mudRight   $flumeFront $mudBottom)
+    ($mudRight   $flumeFront $flumeBottom)
+    ($flumeRight $flumeFront $flumeBottom)
+    ($flumeRight $flumeFront $flumeTop)
+    ($mudRight   $flumeFront $flumeTop)
+    ($mudLeft    $flumeFront $flumeTop)
+    ($flumeLeft  $flumeFront $flumeTop)
+);
+
+blocks          
+(
+    hex (0 1 11 10 9 8 18 19) (494 1 96) simpleGrading (1 1 
+	(
+        (0.006  3   1)
+	    (0.105  21  5)
+	    (0.105  21  0.2)
+	    (0.048  24   1)
+	    (0.136  27   5)
+        )
+	)
+
+    hex (1 4 14 11 8 7 17 18) (877 1 96) simpleGrading (1 1 
+	(
+        (0.006  3   1)
+	    (0.105  21  5)
+	    (0.105  21  0.2)
+	    (0.048  24   1)
+	    (0.136  27   5)
+        )
+	)
+
+    hex (4 5 15 14 7 6 16 17) (429 1 96) simpleGrading (1 1 
+	(
+        (0.006  3   1)
+	    (0.105  21  5)
+	    (0.105  21  0.2)
+	    (0.048  24   1)
+	    (0.136  27   5)
+        )
+	)
+
+    hex (2 3 13 12 1 4 14 11) (877 1 30) simpleGrading (1 1 1)
+);
+
+edges           
+(
+);
+
+boundary        
+(
+
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 9 19 10)
+        );
+    }
+
+   outlet
+    {
+        type patch;
+        faces
+        (
+            (5 6 16 15)
+        );
+    }
+
+    bottom
+    {
+        type wall;
+        faces
+        (
+            (0 1 11 10)
+            (1 2 12 11)
+            (2 3 13 12)
+            (3 4 14 13)
+            (4 5 15 14)
+        );
+    }
+
+    atmosphere
+    {
+        type patch;
+        faces
+        (
+            (9 8 18 19)
+            (8 7 17 18)
+            (7 6 16 17)
+        );
+    }
+
+    front
+    {
+        type empty;
+        faces
+        (
+            (0 1 8 9)
+            (1 4 7 8)
+            (4 5 6 7)
+            (1 2 3 4)
+        );
+    }
+
+    back
+    {
+        type empty;
+        faces
+        (
+            (10 11 18 19)
+            (11 14 17 18)
+            (14 15 16 17)
+            (11 12 13 14)
+
+        );
+    }
+
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

@@ -1,0 +1,44 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.0                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  | For copyright notice see file Copyright         |
+\*---------------------------------------------------------------------------*/
+gaugesVOF
+{
+        type    sets;
+        libs ("libsampling.so");
+        writeControl adjustableRunTime;
+        writeInterval 0.1;
+        setFormat       raw;
+        surfaceFormat   raw;
+        interpolationScheme cellPoint;
+        fields          ( alpha.water );
+        sets
+        (
+            waterWave01
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 40 50 4);
+                end     ( 40 50 6);
+            }
+            waterWave02
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 1513 50 4);
+                end     ( 1513 50 6);
+            }
+            waterWave03
+            {
+                type    midPointAndFace;
+                axis    xyz;
+                start   ( 2986 50 4);
+                end     ( 2986 50 6);
+            }
+        );
+}
+
+// ************************************************************************* //

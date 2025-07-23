@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Source tutorial run functions
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions
+#------------------------------------------------------------------------------
+rm -rf processor*
+rm -rf log*
+rm -rf 0/alphas
+rm -rf postProcessing
+rm -rf WG
+
+cp 0/alpha.air.org 0/alpha.air
+cp 0/alpha.mud.org 0/alpha.mud
+cp 0/alpha.water.org 0/alpha.water
+cp 0/alphas.org 0/alphas
+cp 0/U.org 0/U
+
+runApplication blockMesh
+runApplication refineMesh -overwrite
+runApplication setFields
+
+runApplication multiphaseInterFoam
+#------------------------------------------------------------------------------
+# runApplication decomposePar
+# runParallel multiphaseInterFoam
+#------------------------------------------------------------------------------
